@@ -1,0 +1,5 @@
+name: GhostRealms
+version: 0.0.1-alfa
+author: Ghost Realms Network
+commands:
+  pl:
