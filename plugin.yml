@@ -1,5 +1,6 @@
 name: GhostRealms
 version: 0.0.1-alfa
 author: Ghost Realms Network
+main: net.ghostrealms.server.BackendClient
 commands:
   pl:
