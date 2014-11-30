@@ -32,9 +32,12 @@ public class CronManager {
      * @param cron
      * @param delay
      */
-    public void schedule(Cron cron, int delay) {
-
+    public void schedule(final Cron cron, final int delay) {
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                cron.execute();
+            }
+        }, delay, cron.getInterval());
     }
-
-
 }
