@@ -1,9 +1,7 @@
 package net.ghostrealms.server;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by River on 29-Nov-14 19:35.
@@ -43,6 +41,15 @@ public class CronManager {
         });
 
         timer.scheduleAtFixedRate(cronTimerTaskMap.get(cron), delay, cron.getInterval());
+    }
+
+    public void scheduleAtTime(final Cron cron, Date date) {
+        cronTimerTaskMap.put(cron, new TimerTask() {
+            @Override
+            public void run() { cron.execute(); }
+        });
+
+        timer.schedule(cronTimerTaskMap.get(cron), date, TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
     }
 
     /**
