@@ -44,4 +44,13 @@ public class CronManager {
 
         timer.scheduleAtFixedRate(cronTimerTaskMap.get(cron), delay, cron.getInterval());
     }
+
+    /**
+     * Cancel a Cron
+     * @param cron
+     */
+    public void cancel(Cron cron){
+        TimerTask taskToCancel = cronTimerTaskMap.get(cron);
+        taskToCancel.cancel();
+    }
 }
