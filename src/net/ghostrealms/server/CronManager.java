@@ -19,12 +19,14 @@ public class CronManager {
      * @param cron
      */
     public void schedule(final Cron cron) {
-        timer.scheduleAtFixedRate(new TimerTask() {
+        cronTimerTaskMap.put(cron, new TimerTask() {
             @Override
             public void run() {
-               cron.execute();
+                cron.execute();
             }
-        }, 0, cron.getInterval());
+        });
+
+        timer.scheduleAtFixedRate(cronTimerTaskMap.get(cron), 0, cron.getInterval());
     }
 
     /**
@@ -33,11 +35,13 @@ public class CronManager {
      * @param delay
      */
     public void schedule(final Cron cron, final int delay) {
-        timer.scheduleAtFixedRate(new TimerTask() {
+        cronTimerTaskMap.put(cron, new TimerTask() {
             @Override
             public void run() {
                 cron.execute();
             }
-        }, delay, cron.getInterval());
+        });
+
+        timer.scheduleAtFixedRate(cronTimerTaskMap.get(cron), delay, cron.getInterval());
     }
 }
