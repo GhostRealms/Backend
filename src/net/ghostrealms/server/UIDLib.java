@@ -16,8 +16,12 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.Callable;
+
+
 public class UIDLib {
+
     private UIDLib() {}
+
     public static UUID getID(String user) {
         UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(user));
         try {
@@ -28,6 +32,7 @@ public class UIDLib {
             return null;
         }
     }
+
     public static String getName(UUID id) {
         NameFetcher fetcher = new NameFetcher(Arrays.asList(id));
         try {
