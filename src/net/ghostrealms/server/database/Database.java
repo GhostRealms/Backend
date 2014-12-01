@@ -1,8 +1,6 @@
 package net.ghostrealms.server.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Created by River on 30-Nov-14.
@@ -53,6 +51,48 @@ public class Database {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * Prepares an SQL Statement to be sent
+     *
+     * @param sql
+     * @param params
+     * @return
+     * @throws SQLException
+     */
+    private PreparedStatement prepareSqlStatement(String sql, Object[] params) throws SQLException {
+        PreparedStatement stmt = this.connection.prepareStatement(sql);
+
+        int counter = 1;
+
+        for (Object param : params) {
+            if (param instanceof Integer) {
+                stmt.setInt(counter++, (Integer) param);
+            } else if (param instanceof Short) {
+                stmt.setShort(counter++, (Short) param);
+            } else if (param instanceof Long) {
+                stmt.setLong(counter++, (Long) param);
+            } else if (param instanceof Double) {
+                stmt.setDouble(counter++, (Double) param);
+            } else if (param instanceof String) {
+                stmt.setString(counter++, (String) param);
+            } else if (param == null) {
+                stmt.setNull(counter++, Types.NULL);
+            } else if (param instanceof Object) {
+                stmt.setObject(counter++, param);
+            } else {
+                System.out.printf("Database -> Unsupported data type %s", param.getClass().getSimpleName());
+            }
+        }
+
+        return stmt;
+    }
+
+
+    public void write(String statement, Object... params) throws SQLException {
+        PreparedStatement stmt = this.prepareSqlStatement(statement, params);
+        stmt.executeUpdate();
     }
 
 
