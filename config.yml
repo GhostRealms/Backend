@@ -1,3 +1,5 @@
-database: "jdbc:mysql://localhost:3306/realms"
-username: "rewt"
-password: "p@sswurd"
+database:
+  username: "root"
+  password: "somepass"
+  host: "localhost"
+  port: 3306

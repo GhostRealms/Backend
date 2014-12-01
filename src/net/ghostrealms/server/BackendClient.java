@@ -1,5 +1,6 @@
 package net.ghostrealms.server;
 
+import net.ghostrealms.server.database.MySQL;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -10,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class BackendClient extends JavaPlugin {
 
     private static CronManager cronManager = new CronManager();
+    private static MySQL mySQL;
 
     public static CronManager getCronManager() {
         return cronManager;
@@ -17,10 +19,13 @@ public class BackendClient extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        //Cover MySQL Setup
-        Thread thread = new Thread(new SQLSetup());
-        thread.run();
-        //End MySQL Setup See @SQLSetup for More details
+
+        String user = getConfig().getString("database.username");
+        String pass = getConfig().getString("database.password");
+        String host = getConfig().getString("database.hostname");
+        int port = getConfig().getInt("database.port");
+
+        mySQL = new MySQL(user, pass, host, port);
     }
 
     @Override
