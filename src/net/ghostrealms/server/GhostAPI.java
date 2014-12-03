@@ -1,5 +1,6 @@
 package net.ghostrealms.server;
 
+import net.ghostrealms.server.database.Cache;
 import net.ghostrealms.server.log.RealmsLogger;
 
 /**
@@ -8,8 +9,23 @@ import net.ghostrealms.server.log.RealmsLogger;
  */
 public class GhostAPI {
 
+    private static RealmsLogger realmsLogger;
+    private static Cache cacheInterface;
+
+    protected static void setLogger(RealmsLogger logger) {
+        realmsLogger = logger;
+    }
+
+    protected static void setCache(Cache cache) {
+        cacheInterface = cache;
+    }
+
     public static RealmsLogger getLogger() {
-        return null;
+        return realmsLogger;
+    }
+
+    public static Cache getCacheInterface() {
+        return cacheInterface;
     }
 
 }
