@@ -3,3 +3,5 @@ database:
   password: "somepass"
   host: "localhost"
   port: 3306
+  cache:
+    host: "localhost"
