@@ -1,6 +1,7 @@
 package net.ghostrealms.server;
 
 import net.ghostrealms.server.database.Cache;
+import net.ghostrealms.server.database.MySQL;
 import net.ghostrealms.server.log.RealmsLogger;
 
 /**
@@ -11,6 +12,7 @@ public class GhostAPI {
 
     private static RealmsLogger realmsLogger;
     private static Cache cacheInterface;
+    private static MySQL sqlInterface;
 
     protected static void setLogger(RealmsLogger logger) {
         realmsLogger = logger;
@@ -20,12 +22,20 @@ public class GhostAPI {
         cacheInterface = cache;
     }
 
+    protected static void setSQLInstance(MySQL sql) {
+        sqlInterface = sql;
+    }
+
     public static RealmsLogger getLogger() {
         return realmsLogger;
     }
 
     public static Cache getCacheInterface() {
         return cacheInterface;
+    }
+
+    public static MySQL getMySQLInterface() {
+        return sqlInterface;
     }
 
 }

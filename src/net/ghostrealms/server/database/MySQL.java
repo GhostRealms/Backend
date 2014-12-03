@@ -65,11 +65,15 @@ public class MySQL {
 
     private void establish() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
         } catch(ClassNotFoundException ex) {
             ex.printStackTrace();
             //Hopefully disable when the connection cannot be established
             BackendClient.getPlugin(BackendClient.class).getServer().getPluginManager().disablePlugin(new BackendClient());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
 
         try {
