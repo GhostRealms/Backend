@@ -1,7 +1,6 @@
 package net.ghostrealms.server;
 
 import net.ghostrealms.server.database.Cache;
-import net.ghostrealms.server.database.MySQL;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -12,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class BackendClient extends JavaPlugin {
 
     private static CronManager cronManager = new CronManager();
-    private static MySQL mySQL;
     private Cache cache;
 
     public static CronManager getCronManager() {
@@ -27,7 +25,6 @@ public class BackendClient extends JavaPlugin {
         String host = getConfig().getString("database.hostname");
         int port = getConfig().getInt("database.port");
 
-        mySQL = new MySQL(user, pass, host, port);
 
         String redis_host = getConfig().getString("database.cache.host");
 
