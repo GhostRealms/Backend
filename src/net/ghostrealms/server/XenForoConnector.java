@@ -1,5 +1,7 @@
 package net.ghostrealms.server;
 
+import org.bukkit.Bukkit;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,7 +13,7 @@ import java.net.URL;
 public class XenForoConnector {
 
     //This is the API key for http://ghostrealms.net/api.php
-    private static final String API_KEY = "mAwrufreCaTac2uvUs";
+    private static final String API_KEY = Bukkit.getServer().getPluginManager().getPlugin("BackendClient").getConfig().getString("xenforo.api_key");
     //This is the API url
     private static final String API_URL = "http://ghostrealms.net/";
     //Email RegEx Pattern

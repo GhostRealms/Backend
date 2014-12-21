@@ -5,3 +5,5 @@ database:
   port: 3306
   cache:
     host: "localhost"
+xenforo:
+  api_key: "place XenAPI key here."
