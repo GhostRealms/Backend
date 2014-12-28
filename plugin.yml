@@ -3,4 +3,6 @@ version: 0.0.1-alfa
 author: Ghost Realms Network
 main: net.ghostrealms.server.BackendClient
 commands:
-  pl:
+  plugins:
+    aliases: [pl, plugins]
+    description: View the server's plugin list
