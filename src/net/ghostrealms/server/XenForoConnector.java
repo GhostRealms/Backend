@@ -11,6 +11,16 @@ import java.net.URL;
  * Created by River on 29-Nov-14 20:13.
  */
 public class XenForoConnector {
+//@Move this method where it fits.
+public static boolean eCheckSpace(final String S){
+  if(S != null) {
+    for(int i = 0; i < S.length(); i++) {
+    if(Character.isWhitespace(testCode.charAt(i))){
+                return true;
+            }
+    }
+}
+
 
     //This is the API key for http://ghostrealms.net/api.php
     private static final String API_KEY = Bukkit.getServer().getPluginManager().getPlugin("BackendClient").getConfig().getString("xenforo.api_key");
@@ -46,12 +56,15 @@ public class XenForoConnector {
             //possible injection attack
             return Response.INJECTION;
         }
+        
+        //@I didn't use the checkSpace method here but feel free to do so.
         if(!email.matches(EMAIL_REGEX)) {
             //invalid email address
             return Response.INVALID_EMAIL;
         }
 
-        if(password.length() <= 5) {
+        //@Implying passwords don't have spaces... uses eCheckSpace Method from top (under class).
+        if(password.length() <= 5 || eCheckSpace(password)) {
             //password must be greater than 6 characters.
             return Response.BAD_PASSWORD;
         }
